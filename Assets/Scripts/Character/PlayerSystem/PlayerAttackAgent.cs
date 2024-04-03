@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -7,17 +8,24 @@ namespace ShootEmUp
         [SerializeField] private PlayerCharacter _playerCharacter;
         [SerializeField] private InputManager _inputManager;
         [SerializeField] private BulletConfig _bulletConfig;
+        [SerializeField] private BulletSystem _bulletSystem;
 
-        public delegate void PlayerFireHandler(BulletConfig bulletConfig);
-
-        public event PlayerFireHandler OnPlayerFire;
 
         private void Update()
         {
-            if (this._inputManager.IsFireRequired())
+            if (_inputManager.IsFireRequired())
             {
-                OnPlayerFire?.Invoke(_bulletConfig);
+                Fire();
             }
+        }
+
+        private void Fire()
+        {
+            Vector2 startPosition = _playerCharacter.GetWeaponPosition();
+
+            Vector2 direction = _playerCharacter.GetWeaponRotation() * Vector3.up * _bulletConfig.Speed;
+
+            _bulletSystem.CreateBullet(_bulletConfig, startPosition, direction);
         }
     }
 }

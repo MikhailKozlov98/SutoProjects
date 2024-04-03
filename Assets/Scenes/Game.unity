@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 562298204}
   - component: {fileID: 562298207}
   - component: {fileID: 562298205}
+  - component: {fileID: 562298208}
   m_Layer: 0
   m_Name: EnemySystem
   m_TagString: Untagged
@@ -397,7 +398,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPool: {fileID: 562298207}
-  _bulletSystem: {fileID: 363245577}
 --- !u!114 &562298207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,10 +412,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPositions: {fileID: 7166351703523243261}
   _player: {fileID: 3926786964592264469}
+  _bulletSystem: {fileID: 363245577}
   _worldTransform: {fileID: 1683128698}
   _container: {fileID: 178513672}
   _prefab: {fileID: -4546457242515466597, guid: 87fe189881a524806800482ac8eaaa83,
     type: 3}
+--- !u!114 &562298208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562298203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a0c7ad203f16e4aa13e0cbeaea9df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPool: {fileID: 562298207}
 --- !u!1 &883274639
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +671,6 @@ GameObject:
   - component: {fileID: 1610435526}
   - component: {fileID: 1610435527}
   - component: {fileID: 1610435529}
-  - component: {fileID: 1610435528}
   m_Layer: 0
   m_Name: PlayerSystem
   m_TagString: Untagged
@@ -694,20 +707,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCharacter: {fileID: 3926786964592264469}
   _gameManager: {fileID: 3951702117947426123}
---- !u!114 &1610435528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1610435525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 125ba60cee1569b459cefb2d49839f20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerCharacter: {fileID: 3926786964592264469}
-  _bulletSystem: {fileID: 363245577}
 --- !u!114 &1610435529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1230,6 +1229,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 8931683747129644683, guid: 9699e7e809fd44b2bbf3d30c951ecbd2,
+        type: 3}
+      propertyPath: _bulletSystem
+      value: 
+      objectReference: {fileID: 363245577}
     - target: {fileID: 8931683747129644683, guid: 9699e7e809fd44b2bbf3d30c951ecbd2,
         type: 3}
       propertyPath: _inputManager

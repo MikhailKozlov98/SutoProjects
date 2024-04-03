@@ -9,16 +9,17 @@ namespace ShootEmUp
         
         [SerializeField] private int _hitPoints;
         
-        public bool IsHitPointsExists() {
+        public bool IsHitPointsExists()
+        {
             return this._hitPoints > 0;
         }
 
         public void TakeDamage(int damage)
         {
-            this._hitPoints -= damage;
-            if (this._hitPoints <= 0)
+            _hitPoints -= damage;
+            if (_hitPoints <= 0)
             {
-                this.HpEmpty?.Invoke(this.gameObject);
+                HpEmpty?.Invoke(gameObject);
             }
         }
     }

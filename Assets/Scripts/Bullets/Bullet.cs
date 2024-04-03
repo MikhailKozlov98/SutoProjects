@@ -5,7 +5,7 @@ namespace ShootEmUp
 {
     public sealed class Bullet : MonoBehaviour
     {
-        public event Action<Bullet, Collision2D> OnCollisionEntered;
+        public event Action<Bullet, GameObject> OnCollisionEntered;
 
         [SerializeField]
         private Rigidbody2D _rigidbody2D;
@@ -18,39 +18,47 @@ namespace ShootEmUp
         private int _damage;
         internal int Damage => _damage;
 
+        private void OnEnable()
+        {
+            OnCollisionEntered += DealDamage;
+        }
+
+        private void OnDisable()
+        {
+            OnCollisionEntered -= DealDamage;
+        }
+
+        internal void Initialize(BulletSystem.Args args)
+        {
+            _rigidbody2D.velocity = args.Velocity;
+            _isPlayer = args.IsPlayer;
+            _damage = args.Damage;
+            gameObject.layer = args.PhysicsLayer;
+            transform.position = args.StartPosition;
+            _spriteRenderer.color = args.Color;
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            this.OnCollisionEntered?.Invoke(this, collision);
+                OnCollisionEntered?.Invoke(this, collision.gameObject);
         }
 
-        public void SetVelocity(Vector2 velocity)
+        internal static void DealDamage(Bullet bullet, GameObject other)
         {
-            this._rigidbody2D.velocity = velocity;
-        }
+            if (!other.TryGetComponent(out TeamComponent team))
+            {
+                return;
+            }
 
-        public void SetPlayerSide(bool isPlayer)
-        {
-            this._isPlayer = isPlayer;
-        }
+            if (bullet.IsPlayer == team.IsPlayer)
+            {
+                return;
+            }
 
-        public void SetDamageAmount(int damage)
-        {
-            this._damage = damage;
-        }
-
-        public void SetPhysicsLayer(int physicsLayer)
-        {
-            this.gameObject.layer = physicsLayer;
-        }
-
-        public void SetPosition(Vector3 position)
-        {
-            this.transform.position = position;
-        }
-
-        public void SetColor(Color color)
-        {
-            this._spriteRenderer.color = color;
+            if (other.TryGetComponent(out HitPointsComponent hitPoints))
+            {
+                hitPoints.TakeDamage(bullet.Damage);
+            }
         }
     }
 }

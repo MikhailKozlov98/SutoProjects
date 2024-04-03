@@ -9,11 +9,6 @@ namespace ShootEmUp
         [SerializeField] private EnemyAttackAgent _enemyAttackAgent;
         [SerializeField] private EnemyMoveAgent _enemyMoveAgent;
 
-        internal EnemyAttackAgent GetEnemyAttack()
-        {
-            return _enemyAttackAgent;
-        }
-
         internal void SetDestination(Vector2 destinatation)
         {
             _enemyMoveAgent.SetDestination(destinatation);
@@ -27,6 +22,11 @@ namespace ShootEmUp
         internal void SetTarget(Character target)
         {
             _enemyAttackAgent.SetTarget(target);
+        }
+
+        internal void SetBulletSystem(BulletSystem bulletSystem)
+        {
+            _enemyAttackAgent.SetBulletSystem(bulletSystem);
         }
     }
 }

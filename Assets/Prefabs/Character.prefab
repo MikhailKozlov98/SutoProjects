@@ -158,9 +158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57ed31af8d94ec3b11df7e2b588d40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerCharacter: {fileID: 0}
+  _playerCharacter: {fileID: 4198243135316002956}
   _inputManager: {fileID: 0}
   _bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
+  _bulletSystem: {fileID: 0}
 --- !u!114 &3926786964091724599
 MonoBehaviour:
   m_ObjectHideFlags: 0

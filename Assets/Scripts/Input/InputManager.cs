@@ -1,11 +1,24 @@
+using System;
 using UnityEngine;
 
 namespace ShootEmUp
 {
     public sealed class InputManager : MonoBehaviour
     {
-        private bool _fireRequired;
-        internal bool FireRequired => _fireRequired;
+        public event Action<float> OnMove;
+        public event Action OnFire;
+
+        // private void OnEnable()
+        // {
+        //     OnMove += GetHorizontalDirection;
+        //     OnFire += IsFireRequired;
+        // }
+
+        // private void OnDisable()
+        // {
+        //     OnMove -= GetHorizontalDirection;
+        //     OnFire -= IsFireRequired;
+        // }
 
         internal float GetHorizontalDirection()
         {
